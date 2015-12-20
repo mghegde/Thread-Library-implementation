@@ -1,0 +1,15 @@
+IMPORTANT NOTE:
+--------------
+Alarm signal will be generated  every 100 msecs.
+We have given long loop in the threads in test code to allow for some threads to be preempted and put back in RunQ again. It'll take some time for threads to finish execution. Please wait for few seconds.
+
+Commands:
+--------
+
+1. Execute "make clean"  
+
+2. Execute "make" command. It creates mytest executable.
+Ignore any warnings.
+
+3. Run mytest binary using "./mytest" command
+
