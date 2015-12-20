@@ -1,0 +1,86 @@
+/***************************************************
+* Single Author Info
+* skumar23 Sudhendu Kumar --> Commands
+* ssingh24 Siddharth Singh --> Libraries Usage
+*
+* Group Info
+* mghegde Mahendra Hegde
+* ssingh24 Siddharth Singh
+* skumar23 Sudhendu Kumar
+***************************************************/
+
+COMMANDS FOR FRSH COMPILE AND RUN
+------------------------------------------------------------
+1) COMMAND : make clean
+
+
+2) To make static library using all the mythread_*.c files :-
+COMMAND : make library
+OUTPUT  : static library *libmythread.a* on success.
+
+
+3) To make the executable using the static library :-
+COMMAND : make binary
+OUTPUT  : Executable *p5* on success.
+
+
+4) Run the Test Program :-
+./p5 <number_of_threads>
+
+USAGE OF LIBRARIES
+---------------------------------------------------------------
+/* mythread_self - thread id of running thread */
+mythread_t mythread_self(void);
+RETURNS : Thread Structure
+
+/* mythread_create - prepares context of new_thread_ID as start_func(arg),
+ * attr is ignored right now.
+ * Threads are activated (run) according to the number of available LWPs
+ * or are marked as ready. */
+int mythread_create(mythread_t *new_thread_ID, mythread_attr_t *attr, void * (*start_func)(void *), void *arg);
+RETURNS : 0 on SUCCESS, -1 on FAILURE
+
+/* mythread_yield - switch from running thread to the next ready one */
+int mythread_yield(void);
+RETURNS : 0 on SUCCESS, -1 on FAILURE
+
+/* mythread_join - suspend calling thread if target_thread has not finished,
+ * enqueue on the join Q of the target thread, then dispatch ready thread;
+ * once target_thread finishes, it activates the calling thread / marks it
+ * as ready. */
+int mythread_join(mythread_t target_thread, void **status);
+RETURNS : 0 on SUCCESS, -1 on FAILURE
+
+/* mythread_exit - exit thread, awakes joiners on return
+ * from thread_func and dequeue itself from run Q before dispatching run->next */
+void mythread_exit(void *retval);
+
+/* mythread_attr_init - Initializes thread_attr i.e. size and stack base with
+ *default size 8192 and NULL respectively */
+int mythread_attr_init(mythread_attr_t *attr);
+RETURNS : 0 on SUCCESS, -1 on FAILURE
+
+/*mythread_attr_destroy - Resets thread_attr i.e size and base with values
+ *-1 and NULL respectively*/
+int mythread_attr_destroy(mythread_attr_t *attr);
+RETURNS : 0 on SUCCESS, -1 on FAILURE
+
+/*mythread_attr_getstack - Used to retrieve the thread attribute i.e. size and
+ *address information*/
+int mythread_attr_getstack(const mythread_attr_t *attr,	void **stackaddr, size_t *stacksize);
+RETURNS : 0 on SUCCESS, -1 on FAILURE
+
+/*mythread_attr_setstack - Used to set thread attribute i.e. size and
+ *address information*/
+int mythread_attr_setstack(mythread_attr_t *attr, void *stackaddr, size_t stacksize);
+RETURNS : 0 on SUCCESS, -1 on FAILURE
+
+/*mythread_attr_getstacksize - Used to retrieve thread stack size*/
+int mythread_attr_getstacksize(const mythread_attr_t *attr, size_t *stacksize);
+RETURNS : 0 on SUCCESS, -1 on FAILURE
+
+/*mythread_attr_setstacksize - Used to set thread stack size*/
+int mythread_attr_setstacksize(mythread_attr_t *attr, size_t stacksize);
+RETURNS : 0 on SUCCESS, -1 on FAILURE
+
+
