@@ -1,0 +1,25 @@
+IMPORTANT NOTE :-
+1) INITIALIZING OF MUTEX/COND/BARRIER :-
+   All mutex/cond/barrier variables are to be initialized dynamically.
+   Static initilization is not supported.
+   Instead of using 'mythread_*_t = INITIAL_VALUE' use 'mythread_*_init()'
+
+2) *_init(arg1, arg2) function takes arg2 as NULL
+
+_______________________________________________________________________________________
+
+COMMANDS FOR FRESH COMPILE AND RUN
+
+1) COMMAND : make clean
+
+2) To make static library using all the mythread_*.c files :-
+COMMAND : make library
+OUTPUT  : static library *libmysync.a* on success.
+
+3) To make the executable using the static library :-
+COMMAND : make binary
+OUTPUT  : Executable *p4* on success.
+
+4) Run the Test Program :-
+./p4
+__________________________________________________________________________________________
